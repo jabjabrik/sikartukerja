@@ -102,7 +102,151 @@
                 </div>
             </div>
         </section>
-        <!-- Services Section -->
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="portfolio section">
+            <div class="container section-title" data-aos="fade-up">
+                <h2>Lowongan Kerja</h2>
+            </div>
+            <div class="container">
+                <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+                    <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+                        <?php foreach ($loker as $item): ?>
+                            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+                                <div class="portfolio-content h-100">
+                                    <img src="<?= base_url("file/$item->foto") ?>" class="img-fluid" alt="">
+                                    <div class="portfolio-info">
+                                        <h4>Kriteria : <?= $item->kriteria ?></h4>
+                                        <p>Lulusan : <?= $item->lulusan ?></p>
+                                        <a href="<?= base_url("file/$item->foto") ?>" title="<?= $item->keterangan ?>" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                        <!-- <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
+                            <div class="portfolio-content h-100">
+                                <img src="<?= base_url('assets/profile/img/portfolio/product-1.jpg') ?>" class="img-fluid" alt="">
+                                <div class="portfolio-info">
+                                    <h4>Product 1</h4>
+                                    <p>Lorem ipsum, dolor sit amet consectetur</p>
+                                    <a href="<?= base_url('assets/profile/img/portfolio/product-1.jpg') ?>" title="Product 1" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                    <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
+                            <div class="portfolio-content h-100">
+                                <img src="<?= base_url('assets/profile/img/portfolio/branding-1.jpg') ?>" class="img-fluid" alt="">
+                                <div class="portfolio-info">
+                                    <h4>Branding 1</h4>
+                                    <p>Lorem ipsum, dolor sit amet consectetur</p>
+                                    <a href="<?= base_url('assets/profile/img/portfolio/branding-1.jpg') ?>" title="Branding 1" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                    <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-books">
+                            <div class="portfolio-content h-100">
+                                <img src="<?= base_url('assets/profile/img/portfolio/books-1.jpg') ?>" class="img-fluid" alt="">
+                                <div class="portfolio-info">
+                                    <h4>Books 1</h4>
+                                    <p>Lorem ipsum, dolor sit amet consectetur</p>
+                                    <a href="<?= base_url('assets/profile/img/portfolio/books-1.jpg') ?>" title="Branding 1" data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                    <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+                            <div class="portfolio-content h-100">
+                                <img src="<?= base_url('assets/profile/img/portfolio/app-2.jpg') ?>" class="img-fluid" alt="">
+                                <div class="portfolio-info">
+                                    <h4>App 2</h4>
+                                    <p>Lorem ipsum, dolor sit amet consectetur</p>
+                                    <a href="<?= base_url('assets/profile/img/portfolio/app-2.jpg') ?>" title="App 2" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                    <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
+                            <div class="portfolio-content h-100">
+                                <img src="<?= base_url('assets/profile/img/portfolio/product-2.jpg') ?>" class="img-fluid" alt="">
+                                <div class="portfolio-info">
+                                    <h4>Product 2</h4>
+                                    <p>Lorem ipsum, dolor sit amet consectetur</p>
+                                    <a href="<?= base_url('assets/profile/img/portfolio/product-2.jpg') ?>" title="Product 2" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                    <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
+                            <div class="portfolio-content h-100">
+                                <img src="<?= base_url('assets/profile/img/portfolio/branding-2.jpg') ?>" class="img-fluid" alt="">
+                                <div class="portfolio-info">
+                                    <h4>Branding 2</h4>
+                                    <p>Lorem ipsum, dolor sit amet consectetur</p>
+                                    <a href="<?= base_url('assets/profile/img/portfolio/branding-2.jpg') ?>" title="Branding 2" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                    <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-books">
+                            <div class="portfolio-content h-100">
+                                <img src="<?= base_url('assets/profile/img/portfolio/books-2.jpg') ?>" class="img-fluid" alt="">
+                                <div class="portfolio-info">
+                                    <h4>Books 2</h4>
+                                    <p>Lorem ipsum, dolor sit amet consectetur</p>
+                                    <a href="<?= base_url('assets/profile/img/portfolio/books-2.jpg') ?>" title="Branding 2" data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                    <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+                            <div class="portfolio-content h-100">
+                                <img src="<?= base_url('assets/profile/img/portfolio/app-3.jpg') ?>" class="img-fluid" alt="">
+                                <div class="portfolio-info">
+                                    <h4>App 3</h4>
+                                    <p>Lorem ipsum, dolor sit amet consectetur</p>
+                                    <a href="<?= base_url('assets/profile/img/portfolio/app-3.jpg') ?>" title="App 3" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                    <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
+                            <div class="portfolio-content h-100">
+                                <img src="<?= base_url('assets/profile/img/portfolio/product-3.jpg') ?>" class="img-fluid" alt="">
+                                <div class="portfolio-info">
+                                    <h4>Product 3</h4>
+                                    <p>Lorem ipsum, dolor sit amet consectetur</p>
+                                    <a href="<?= base_url('assets/profile/img/portfolio/product-3.jpg') ?>" title="Product 3" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                    <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
+                            <div class="portfolio-content h-100">
+                                <img src="<?= base_url('assets/profile/img/portfolio/branding-3.jpg') ?>" class="img-fluid" alt="">
+                                <div class="portfolio-info">
+                                    <h4>Branding 3</h4>
+                                    <p>Lorem ipsum, dolor sit amet consectetur</p>
+                                    <a href="<?= base_url('assets/profile/img/portfolio/branding-3.jpg') ?>" title="Branding 2" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                    <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-books">
+                            <div class="portfolio-content h-100">
+                                <img src="<?= base_url('assets/profile/img/portfolio/books-3.jpg') ?>" class="img-fluid" alt="">
+                                <div class="portfolio-info">
+                                    <h4>Books 3</h4>
+                                    <p>Lorem ipsum, dolor sit amet consectetur</p>
+                                    <a href="<?= base_url('assets/profile/img/portfolio/books-3.jpg') ?>" title="Branding 3" data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                    <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </section>
         <section id="services" class="services section">
             <div class="container section-title" data-aos="fade-up">
                 <h2>Tata Nilai</h2>
@@ -203,10 +347,10 @@
                     <div class="col-md-6 footer-links">
                         <h4>Useful Links</h4>
                         <ul>
-                            <li><a href="hero">Home</a></li>
-                            <li><a href="about">Tentang</a></li>
-                            <li><a href="features">Misi</a></li>
-                            <li><a href="contact">Kontak</a></li>
+                            <li><a href="#hero" class="active">Home</a></li>
+                            <li><a href="#about">Tentang</a></li>
+                            <li><a href="#features">Visi Misi</a></li>
+                            <li><a href="#contact">Kontak</a></li>
                             <li><a href="<?= base_url('auth'); ?>">Login</a></li>
                         </ul>
                     </div>

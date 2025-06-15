@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 09, 2025 at 07:56 AM
+-- Generation Time: Jan 12, 2025 at 12:09 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.3.33
 
@@ -80,7 +80,8 @@ INSERT INTO `pendaftaran` (`id_pendaftaran`, `id_user`, `nik`, `nama`, `tempat_l
 (2, 3, '3510020202020002', 'Dewi Kartika', 'Probolinggo', '2001-10-20', 'Perempuan', 'belum kawin', 'kristen', '082345678901', 'Diploma IV / Strata I', '2 tahun sebagai Auditor', 'pas_foto.jpg', 'foto_ktp.jpg', 'proses', NULL),
 (3, 4, '3510030303030003', 'Budi Santoso', 'Bandung', '1999-03-10', 'Laki-laki', 'cerai hidup', 'katolik', '083456789012', 'SMA / Sederajat', '2 tahun sebagai Driver', 'pas_foto.jpg', 'foto_ktp.jpg', 'proses', NULL),
 (4, 5, '3510040404040004', 'Siti Aminah', 'Jakarta', '1995-07-25', 'Perempuan', 'belum kawin', 'islam', '084567890123', 'SMA / Sederajat', '1 tahun sebagai Perawat', 'pas_foto.jpg', 'foto_ktp.jpg', 'proses', NULL),
-(5, 6, '3510050505050005', 'Rama Wijaya', 'Yogyakarta', '1997-12-12', 'Laki-laki', 'kawin', 'islam', '085678901234', 'S1 Manajemen', '2 tahun sebagai Marketing', 'pas_foto.jpg', 'foto_ktp.jpg', 'proses', NULL);
+(5, 6, '3510050505050005', 'Rama Wijaya', 'Yogyakarta', '1997-12-12', 'Laki-laki', 'kawin', 'islam', '085678901234', 'S1 Manajemen', '2 tahun sebagai Marketing', 'pas_foto.jpg', 'foto_ktp.jpg', 'proses', NULL),
+(6, 7, '9876544343', 'aam semesta', 'probolinggofdfdfdf', '2025-01-17', 'Perempuan', 'belum kawin', 'kristen', '098765432', 'Diploma IV / Strata I', 'erate', '1736676801.jpg', '17366768011.jpg', 'selesai', '1736677155.jpg');
 
 -- --------------------------------------------------------
 
@@ -102,12 +103,13 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `nama`, `email`, `password`, `role`, `is_active`) VALUES
-(1, 'ridwan abdilah', 'ridwan.abdilah@gmail.com', '$2y$10$kVIrvx5nLsfcKpMzpvo2ae/g9Hd4w.MNyIkiAblRI3vyijYU48s.u', 'admin', '1'),
+(1, 'Disperinaker', 'disperinaker@gmail.com', '$2y$10$GlviRpIgBcu2qFnq4q0eGeD/A9Od8J7Hbs8St7T9W6YNS9TewitK.', 'admin', '1'),
 (2, 'jaka nugraha', 'nugraha@gmail.com', '$2y$10$kVIrvx5nLsfcKpMzpvo2ae/g9Hd4w.MNyIkiAblRI3vyijYU48s.u', 'pemohon', '1'),
 (3, 'Dewi Kartika', 'dewi.kartika@gmail.com', '$2y$10$kVIrvx5nLsfcKpMzpvo2ae/g9Hd4w.MNyIkiAblRI3vyijYU48s.u', 'pemohon', '1'),
 (4, 'Budi Santoso', 'budi.santoso@gmail.com', '$2y$10$kVIrvx5nLsfcKpMzpvo2ae/g9Hd4w.MNyIkiAblRI3vyijYU48s.u', 'pemohon', '1'),
 (5, 'Siti Aminah', 'siti.aminah@gmail.com', '$2y$10$kVIrvx5nLsfcKpMzpvo2ae/g9Hd4w.MNyIkiAblRI3vyijYU48s.u', 'pemohon', '1'),
-(6, 'Rama Wijaya', 'rama@gmail.com', '$2y$10$kVIrvx5nLsfcKpMzpvo2ae/g9Hd4w.MNyIkiAblRI3vyijYU48s.u', 'pemohon', '1');
+(6, 'Rama Wijaya', 'rama@gmail.com', '$2y$10$kVIrvx5nLsfcKpMzpvo2ae/g9Hd4w.MNyIkiAblRI3vyijYU48s.u', 'pemohon', '1'),
+(7, 'amrul afandi', 'amrul@gmail.com', '$2y$10$sAdJYU3c8Cp4HvmC9XaIQOba2I/hxNMc4QRlJI1ELHTaVqT7UMCDC', 'pemohon', '1');
 
 --
 -- Indexes for dumped tables
@@ -147,13 +149,13 @@ ALTER TABLE `lowongan_kerja`
 -- AUTO_INCREMENT for table `pendaftaran`
 --
 ALTER TABLE `pendaftaran`
-  MODIFY `id_pendaftaran` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_pendaftaran` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_user` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
