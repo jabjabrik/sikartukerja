@@ -105,6 +105,12 @@
                                             <input type="text" name="pengalaman_kerja" class="form-control" id="pengalaman_kerja" />
                                         </div>
                                         <div class="mb-3 col-md-6 col-12">
+                                            <label for="alamat" class="form-label">Alamat</label>
+                                            <input type="text" name="alamat" class="form-control" id="alamat" required />
+                                        </div>
+                                        <div class="mb-3 col-md-6 col-12">
+                                        </div>
+                                        <div class="mb-3 col-md-6 col-12">
                                             <label for="pas_foto" class="form-label">Pas Foto (3x4)</label>
                                             <input type="file" name="pas_foto" class="form-control" id="pas_foto" required accept="image/*" />
                                         </div>
@@ -140,7 +146,7 @@
 
     <script>
         const pendaftaran = <?= json_encode($pendaftaran); ?>;
-        const fields = ['id_pendaftaran', 'nik', 'nama', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin', 'status_perkawinan', 'agama', 'pendidikan_terakhir', 'no_telepon', 'pengalaman_kerja', 'pas_foto', 'foto_ktp'];
+        const fields = ['id_pendaftaran', 'nik', 'nama', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin', 'status_perkawinan', 'agama', 'alamat', 'pendidikan_terakhir', 'no_telepon', 'pengalaman_kerja', 'pas_foto', 'foto_ktp'];
 
         const btn_simpan = document.querySelector('#btn-simpan');
         const btn_update = document.querySelector('#btn-update');

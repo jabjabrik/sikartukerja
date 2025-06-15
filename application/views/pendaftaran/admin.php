@@ -58,7 +58,7 @@
                                         <?php endif; ?>
                                     </td>
                                     <td>
-                                        <?php $params = "[`$item->nik`, `$item->nama`, `$item->tempat_lahir`, `$item->tanggal_lahir`, `$item->jenis_kelamin`, `$item->status_perkawinan`, `$item->agama`, `$item->no_telepon`, `$item->pendidikan_terakhir`, `$item->pengalaman_kerja`, `$item->pas_foto`, `$item->foto_ktp`]" ?>
+                                        <?php $params = "[`$item->nik`, `$item->nama`, `$item->tempat_lahir`, `$item->tanggal_lahir`, `$item->jenis_kelamin`, `$item->status_perkawinan`, `$item->agama`, `$item->no_telepon`,`$item->alamat`, `$item->pendidikan_terakhir`, `$item->pengalaman_kerja`, `$item->pas_foto`, `$item->foto_ktp`]" ?>
                                         <div class="btn-group btn-group-sm" role="group">
                                             <button type="button" class="pt-1 pb-0 px-2 btn btn-primary me-1" data-bs-toggle="modal" data-bs-target="#modal_form" onclick="setForm(<?= $params ?>)">
                                                 <i class="bi bi-eye"></i> Detail
@@ -178,17 +178,21 @@
                                 </select>
                             </div>
                             <div class="mb-3 col-md-4 col-12">
+                                <label for="alamat" class="form-label">Alamat</label>
+                                <input type="number" name="alamat" class="form-control" id="alamat" disabled />
+                            </div>
+                            <div class="mb-3 col-md-3 col-12">
                                 <label for="no_telepon" class="form-label">No Telepon</label>
                                 <input type="number" name="no_telepon" class="form-control" id="no_telepon" disabled />
                             </div>
-                            <div class="mb-3 col-md-4 col-12">
+                            <div class="mb-3 col-md-3 col-12">
                                 <label for="pengalaman_kerja" class="form-label">Pengalaman Kerja</label>
                                 <input type="text" name="pengalaman_kerja" class="form-control" id="pengalaman_kerja" disabled />
                             </div>
-                            <div class="mb-3 col-md-4 col-12">
+                            <div class="mb-3 col-md-3 col-12">
                                 <img class="img-fluid" id="pas_foto" width="200" alt="">
                             </div>
-                            <div class="mb-3 col-md-4 col-12">
+                            <div class="mb-3 col-md-3 col-12">
                                 <img class="img-fluid" id="foto_ktp" width="200" alt="">
                             </div>
                         </div>
@@ -206,7 +210,7 @@
     <script>
         const modal_form = document.querySelector('#modal_form');
         const setForm = (data) => {
-            const fields = ['nik', 'nama', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin', 'status_perkawinan', 'agama', 'no_telepon', 'pendidikan_terakhir', 'pengalaman_kerja', 'pas_foto', 'foto_ktp'];
+            const fields = ['nik', 'nama', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin', 'status_perkawinan', 'agama', 'alamat', 'no_telepon', 'pendidikan_terakhir', 'pengalaman_kerja', 'pas_foto', 'foto_ktp'];
             fields.forEach((e, i) => {
                 const element = modal_form.querySelector(`#${e}`);
                 element.value = data[i];
