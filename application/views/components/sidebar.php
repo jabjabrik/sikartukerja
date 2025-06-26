@@ -27,6 +27,12 @@
                             <p>Pendaftaran AK1</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="<?= base_url('monitoring'); ?>" class="nav-link <?= $title == 'Monitoring' ? 'active' : ''; ?>">
+                            <i class="nav-icon bi bi-binoculars-fill"></i>
+                            <p>Monitoring</p>
+                        </a>
+                    </li>
                 <?php endif; ?>
                 <?php if ($user_role == 'admin'): ?>
                     <li class="nav-item">
@@ -46,6 +52,12 @@
                         <a href="<?= base_url('pendaftaran/admin'); ?>" class="nav-link <?= $title == 'Pendaftaran' ? 'active' : ''; ?>">
                             <i class="nav-icon bi bi-pencil-square"></i>
                             <p>Pendaftaran AK1</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?= base_url('monitoring'); ?>" class="nav-link <?= $title == 'Monitoring' ? 'active' : ''; ?>">
+                            <i class="nav-icon bi bi-binoculars-fill"></i>
+                            <p>Monitoring</p>
                         </a>
                     </li>
                     <li class="nav-header">Lowongan Kerja</li>

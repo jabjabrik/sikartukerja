@@ -16,7 +16,6 @@ class Pendaftaran extends CI_Controller
         $id_user = $this->session->userdata('id_user');
         $data['pendaftaran'] = $this->base_model->get_one_data_by('pendaftaran', 'id_user', $id_user);
         $data['id_user'] = $id_user;
-        // dd($data);
         $this->load->view('pendaftaran/index', $data);
     }
 
@@ -92,16 +91,25 @@ class Pendaftaran extends CI_Controller
         redirect('pendaftaran');
     }
 
+    public function validasi($status_validasi, $id_pendaftaran)
+    {
+        authorize_user(['admin']);
+        $data = [
+            'status' => $status_validasi,
+        ];
 
+        // if ($status_validasi == 'ditolak') {
+        //     $data['keterangan'] = $this->input->post('keterangan');
+        // }
+
+        $this->base_model->update('pendaftaran', $data, $id_pendaftaran);
+        redirect('pendaftaran/admin');
+    }
 
     public function upload()
     {
         $id_pendaftaran = $this->input->post('id_pendaftaran');
-        $data = [
-            'status' => 'selesai',
-        ];
 
-        // ERROR
         $this->load->library('upload');
         $data['kartu_ak1'] = upload_file('kartu_ak1');
 

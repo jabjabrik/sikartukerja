@@ -164,15 +164,7 @@
                     document.querySelector(`#${e}`).value = pendaftaran[e]
                 }
 
-                if (pendaftaran.status == 'selesai') {
-                    document.querySelector(`#${e}`).setAttribute('disabled', '');
-                    btn_simpan.setAttribute('hidden', '');
-                    btn_download.removeAttribute('hidden');
-                    btn_download.setAttribute('href', `<?= base_url(); ?>/file/${pendaftaran.kartu_ak1}`);
-                    section_status.removeAttribute('hidden');
-                    text_status.innerHTML = 'Pengajuan Berhasil'
-                    text_status.setAttribute('class', 'badge text-bg-success');
-                } else {
+                if (pendaftaran.status == 'proses') {
                     section_status.removeAttribute('hidden');
                     text_status.innerHTML = 'Proses Validasi'
                     text_status.setAttribute('class', 'badge text-bg-warning');
@@ -181,6 +173,30 @@
                     pas_foto.removeAttribute('required');
                     foto_ktp.removeAttribute('required');
                 }
+
+                if (pendaftaran.status == 'divalidasi') {
+                    document.querySelector(`#${e}`).setAttribute('disabled', '');
+                    btn_simpan.setAttribute('hidden', '');
+                    if (pendaftaran.kartu_ak1) {
+                        btn_download.removeAttribute('hidden');
+                        btn_download.setAttribute('href', `<?= base_url(); ?>/file/${pendaftaran.kartu_ak1}`);
+                    }
+                    section_status.removeAttribute('hidden');
+                    text_status.innerHTML = 'Pengajuan Berhasil'
+                    text_status.setAttribute('class', 'badge text-bg-success');
+                }
+
+                if (pendaftaran.status == 'ditolak') {
+                    section_status.removeAttribute('hidden');
+                    text_status.innerHTML = 'Ditolak'
+                    text_status.setAttribute('class', 'badge text-bg-danger');
+                    btn_simpan.setAttribute('hidden', '');
+                    btn_update.removeAttribute('hidden');
+                    pas_foto.removeAttribute('required');
+                    foto_ktp.removeAttribute('required');
+                }
+
+
             }
         });
 

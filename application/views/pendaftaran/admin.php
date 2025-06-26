@@ -36,7 +36,7 @@
                                 <th>Jenis Kelamin</th>
                                 <th>Agama</th>
                                 <th>No Hp</th>
-                                <th>Status</th>
+                                <th>Validasi</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -53,8 +53,10 @@
                                     <td>
                                         <?php if ($item->status == 'proses'): ?>
                                             <span class="badge text-bg-warning">Proses</span>
+                                        <?php elseif ($item->status == 'divalidasi'): ?>
+                                            <span class="badge text-bg-success">Divalidasi</span>
                                         <?php else: ?>
-                                            <span class="badge text-bg-success">Selesai</span>
+                                            <span class="badge text-bg-danger">Ditolak</span>
                                         <?php endif; ?>
                                     </td>
                                     <td>
@@ -64,14 +66,31 @@
                                                 <i class="bi bi-eye"></i> Detail
                                             </button>
                                             <?php if ($item->status == 'proses'): ?>
-                                                <button type="button" class="pt-1 pb-0 px-2 btn btn-success" data-bs-toggle="modal" data-bs-target="#modal_upload" onclick="setUpload('<?= $item->id_pendaftaran ?>')">
-                                                    <i class="bi bi-upload"></i> Upload AK1
-                                                </button>
-                                            <?php else: ?>
-                                                <a href="<?= base_url("file/$item->kartu_ak1"); ?>" download class="pt-1 pb-0 px-2 btn btn-secondary">
-                                                    <i class="bi bi-download"></i> Download AK1
+                                                <a href="<?= base_url("pendaftaran/validasi/divalidasi/$item->id_pendaftaran"); ?>" class="pt-1 pb-0 px-2 btn btn-primary">
+                                                    <i class="bi bi-check2-circle"></i>
+                                                </a>
+                                                <a href="<?= base_url("pendaftaran/validasi/ditolak/$item->id_pendaftaran"); ?>" class="pt-1 pb-0 px-2 btn btn-danger">
+                                                    <i class="bi bi-x-octagon"></i>
                                                 </a>
                                             <?php endif; ?>
+                                            <?php if ($item->status == 'divalidasi'): ?>
+                                                <?php if ($item->kartu_ak1): ?>
+                                                    <a href="<?= base_url("file/$item->kartu_ak1"); ?>" download class="pt-1 pb-0 px-2 btn btn-secondary">
+                                                        <i class="bi bi-download"></i> Download AK1
+                                                    </a>
+                                                <?php else: ?>
+                                                    <button type="button" class="pt-1 pb-0 px-2 btn btn-success" data-bs-toggle="modal" data-bs-target="#modal_upload" onclick="setUpload('<?= $item->id_pendaftaran ?>')">
+                                                        <i class="bi bi-upload"></i> Upload AK1
+                                                    </button>
+                                                <?php endif; ?>
+                                            <?php endif; ?>
+                                            <?php if ($item->status == 'ditolak'): ?>
+                                                <a href="<?= base_url("pendaftaran/validasi/divalidasi/$item->id_pendaftaran"); ?>" class="pt-1 pb-0 px-2 btn btn-primary">
+                                                    <i class="bi bi-check2-circle"></i>
+                                                </a>
+                                            <?php endif; ?>
+
+
                                         </div>
                                     </td>
                                 </tr>
@@ -154,7 +173,7 @@
                                     <option value="cerai mati">Cerai mati</option>
                                 </select>
                             </div>
-                            <div class="mb-3 col-md-4 col-12">
+                            <div class="mb-3 col-md-3 col-12">
                                 <label for="agama" class="form-label">Agama</label>
                                 <select name="agama" id="agama" class="form-control" disabled>
                                     <option value="islam">Islam</option>
@@ -165,7 +184,7 @@
                                     <option value="khonghucu">Khonghucu</option>
                                 </select>
                             </div>
-                            <div class="mb-3 col-md-4 col-12">
+                            <div class="mb-3 col-md-3 col-12">
                                 <label for="pendidikan_terakhir" class="form-label">Pendidikan Terakhir</label>
                                 <select name="pendidikan_terakhir" id="pendidikan_terakhir" class="form-control" disabled>
                                     <option value="SD / Sederajat">SD / Sederajat</option>
@@ -177,13 +196,13 @@
                                     <option value="Strata III">Strata III</option>
                                 </select>
                             </div>
-                            <div class="mb-3 col-md-4 col-12">
+                            <div class="mb-3 col-md-6 col-12">
                                 <label for="alamat" class="form-label">Alamat</label>
-                                <input type="number" name="alamat" class="form-control" id="alamat" disabled />
+                                <input type="text" name="alamat" class="form-control" id="alamat" disabled />
                             </div>
                             <div class="mb-3 col-md-3 col-12">
                                 <label for="no_telepon" class="form-label">No Telepon</label>
-                                <input type="number" name="no_telepon" class="form-control" id="no_telepon" disabled />
+                                <input type="text" name="no_telepon" class="form-control" id="no_telepon" disabled />
                             </div>
                             <div class="mb-3 col-md-3 col-12">
                                 <label for="pengalaman_kerja" class="form-label">Pengalaman Kerja</label>
@@ -210,7 +229,7 @@
     <script>
         const modal_form = document.querySelector('#modal_form');
         const setForm = (data) => {
-            const fields = ['nik', 'nama', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin', 'status_perkawinan', 'agama', 'alamat', 'no_telepon', 'pendidikan_terakhir', 'pengalaman_kerja', 'pas_foto', 'foto_ktp'];
+            const fields = ['nik', 'nama', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin', 'status_perkawinan', 'agama', 'no_telepon', 'alamat', 'pendidikan_terakhir', 'pengalaman_kerja', 'pas_foto', 'foto_ktp'];
             fields.forEach((e, i) => {
                 const element = modal_form.querySelector(`#${e}`);
                 element.value = data[i];
