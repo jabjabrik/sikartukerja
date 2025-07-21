@@ -20,11 +20,15 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h3 class="mb-0">Monitoring</h3>
+                            <h3 class="mb-0"><?= $user_role == 'admin' ? 'Monitoring' : 'Status Pekerjaan' ?></h3>
                             <?php if ($user_role == 'pemohon'): ?>
                                 <button type="button" class="pb-1 px-2 btn btn-sm btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#modal_form" onclick="setForm('insert')">
                                     <i class="bi bi-plus-lg"></i> Tambah
                                 </button>
+                            <?php else: ?>
+                                <a target="_blank" href="<?= base_url('monitoring/report'); ?>" class="pb-1 px-2 btn btn-sm btn-success mt-2">
+                                    <i class=" bi bi-flag"></i> Cetak Laporan
+                                </a>
                             <?php endif; ?>
                         </div>
                     </div>

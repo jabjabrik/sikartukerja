@@ -39,7 +39,10 @@
                                         <input name="id_pendaftaran" id="id_pendaftaran" hidden value="<?= $id_user ?>" />
                                         <div class="mb-3 col-md-6 col-12">
                                             <label for="nik" class="form-label">NIK</label>
-                                            <input type="number" name="nik" class="form-control" id="nik" required />
+                                            <input type="number" name="nik" class="form-control" id="nik" required
+                                                oninput="this.value=this.value.slice(0,16)"
+                                                min="1000000000000000" max="9999999999999999" />
+                                            <small id="nik-error" style="color:red; display:none;">NIK harus 16 digit</small>
                                         </div>
                                         <div class="mb-3 col-md-6 col-12">
                                             <label for="nama" class="form-label">Nama Lengkap</label>
@@ -104,8 +107,8 @@
                                             <label for="pengalaman_kerja" class="form-label">Pengalaman Kerja</label>
                                             <input type="text" name="pengalaman_kerja" class="form-control" id="pengalaman_kerja" />
                                         </div>
-                                        <div class="mb-3 col-md-6 col-12">
-                                            <label for="alamat" class="form-label">Alamat</label>
+                                        <div class="mb-3 col-12">
+                                            <label for="alamat" class="form-label">Alamat Sesuai KTP</label>
                                             <input type="text" name="alamat" class="form-control" id="alamat" required />
                                         </div>
                                         <div class="mb-3 col-md-6 col-12">
@@ -195,12 +198,20 @@
                     pas_foto.removeAttribute('required');
                     foto_ktp.removeAttribute('required');
                 }
-
-
             }
         });
+    </script>
 
-        console.log(pendaftaran);
+    <script>
+        document.getElementById('nik').addEventListener('input', function() {
+            const nik = this.value;
+            const errorEl = document.getElementById('nik-error');
+            if (nik.length !== 16) {
+                errorEl.style.display = 'block';
+            } else {
+                errorEl.style.display = 'none';
+            }
+        });
     </script>
 
     <!-- Script -->

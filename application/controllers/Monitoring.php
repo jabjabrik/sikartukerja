@@ -8,6 +8,7 @@ class Monitoring extends CI_Controller
         parent::__construct();
         $this->load->model('monitoring_model');
         $this->load->model('base_model');
+        $this->load->library('Dompdf_lib');
         authorize_user(['pemohon', 'admin']);
     }
 
@@ -56,5 +57,19 @@ class Monitoring extends CI_Controller
         if (is_null($id_monitoring)) redirect('monitoring');
         $this->base_model->delete('monitoring', $id_monitoring);
         redirect("monitoring");
+    }
+
+    public function report()
+    {
+        $data['data_result'] = $this->monitoring_model->get_all(null, null);
+        $html = $this->load->view('monitoring/report', $data, true);
+
+        // Atur DOMPDF
+        $this->dompdf_lib->loadHtml($html);
+        $this->dompdf_lib->setPaper('A4', 'potrait');
+        $this->dompdf_lib->render();
+
+        // Output file PDF
+        $this->dompdf_lib->stream("report-monitoring.pdf", array("Attachment" => 0));
     }
 }

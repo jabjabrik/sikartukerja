@@ -10,7 +10,7 @@ class Dashboard_model extends CI_Model
 
     public function get_total_pengajuan(): string
     {
-        $query = "SELECT COUNT(pendaftaran.id_pendaftaran) AS total FROM pendaftaran WHERE pendaftaran.status = 'selesai'";
+        $query = "SELECT COUNT(pendaftaran.id_pendaftaran) AS total FROM pendaftaran WHERE pendaftaran.status = 'divalidasi'";
         return $this->db->query($query)->row('total');
     }
 

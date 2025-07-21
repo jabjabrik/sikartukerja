@@ -30,7 +30,7 @@
                     <li class="nav-item">
                         <a href="<?= base_url('monitoring'); ?>" class="nav-link <?= $title == 'Monitoring' ? 'active' : ''; ?>">
                             <i class="nav-icon bi bi-binoculars-fill"></i>
-                            <p>Monitoring</p>
+                            <p><?= $user_role == 'admin' ? 'Monitoring' : 'Status Pekerjaan' ?></p>
                         </a>
                     </li>
                 <?php endif; ?>

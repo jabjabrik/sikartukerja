@@ -13,14 +13,16 @@ class Loker extends CI_Controller
     public function info()
     {
         $data['title'] = 'Informasi Lowongan Kerja';
-        $data['data_result'] = $this->base_model->get_all('lowongan_kerja');
+        $this->db->order_by('id_lowongan_kerja', 'DESC');
+        $data['data_result'] =  $this->db->get('lowongan_kerja')->result();
         $this->load->view('loker/info', $data);
     }
 
     public function kelola()
     {
         $data['title'] = 'Kelola Lowongan Kerja';
-        $data['data_result'] = $this->base_model->get_all('lowongan_kerja');
+        $this->db->order_by('id_lowongan_kerja', 'DESC');
+        $data['data_result'] =  $this->db->get('lowongan_kerja')->result();
         $this->load->view('loker/kelola', $data);
     }
 

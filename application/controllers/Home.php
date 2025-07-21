@@ -11,7 +11,8 @@ class Home extends CI_Controller
 
     public function index()
     {
-        $data['loker'] = $this->base_model->get_all('lowongan_kerja');
+        $this->db->order_by('id_lowongan_kerja', 'DESC');
+        $data['loker'] =  $this->db->get('lowongan_kerja')->result();
         $this->load->view('home/index', $data);
     }
 }
