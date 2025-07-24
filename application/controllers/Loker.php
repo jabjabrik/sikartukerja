@@ -30,8 +30,10 @@ class Loker extends CI_Controller
     {
         $data = [
             'kriteria' => trim($this->input->post('kriteria', true)),
+            'nama_instansi' => trim($this->input->post('nama_instansi', true)),
             'lulusan' => trim($this->input->post('lulusan', true)),
             'keterangan' => trim($this->input->post('keterangan', true)),
+            'tanggal_berlaku' => trim($this->input->post('tanggal_berlaku', true)),
         ];
 
         $this->load->library('upload');
@@ -47,8 +49,10 @@ class Loker extends CI_Controller
 
         $data = [
             'kriteria' => trim($this->input->post('kriteria', true)),
+            'nama_instansi' => trim($this->input->post('nama_instansi', true)),
             'lulusan' => trim($this->input->post('lulusan', true)),
             'keterangan' => trim($this->input->post('keterangan', true)),
+            'tanggal_berlaku' => trim($this->input->post('tanggal_berlaku', true)),
         ];
 
         $foto = $this->base_model->get_one_data_by('lowongan_kerja', 'id_lowongan_kerja', $id_lowongan_kerja)->foto;

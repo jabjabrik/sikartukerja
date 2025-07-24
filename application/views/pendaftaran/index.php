@@ -32,6 +32,12 @@
                             <div class="card-header">
                                 <div class="card-title">Form Pendaftaran Kartu AK1</div>
                             </div>
+                            <?php if ($this->session->flashdata('alert')) : ?>
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                    <?= $this->session->flashdata('alert') ?>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            <?php endif; ?>
                             <form action="<?= base_url('pendaftaran/' . (is_null($pendaftaran) ? 'insert' : 'update')); ?>" method="post" autocomplete="off" enctype="multipart/form-data">
                                 <div class="card-body">
                                     <div class="row">

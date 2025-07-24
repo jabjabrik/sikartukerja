@@ -31,12 +31,14 @@
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>Tgl Daftar</th>
                                 <th>NIK</th>
                                 <th>Nama Lengkap</th>
-                                <th>Jenis Kelamin</th>
+                                <th>JK</th>
                                 <th>Agama</th>
                                 <th>No Hp</th>
                                 <th>Validasi</th>
+                                <th>Tgl.Upload</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -45,6 +47,7 @@
                             <?php foreach ($data_result as $item) : ?>
                                 <tr>
                                     <td><?= $no++ ?></td>
+                                    <td><?= date('d/m/Y', strtotime($item->tanggal_pendaftaran)) ?></td>
                                     <td><?= $item->nik ?></td>
                                     <td><?= $item->nama ?></td>
                                     <td><?= $item->jenis_kelamin ?></td>
@@ -59,6 +62,7 @@
                                             <span class="badge text-bg-danger">Ditolak</span>
                                         <?php endif; ?>
                                     </td>
+                                    <td><?= $item->tanggal_upload ? date('d/m/Y', strtotime($item->tanggal_upload)) : '-' ?></td>
                                     <td>
                                         <?php $params = "[`$item->nik`, `$item->nama`, `$item->tempat_lahir`, `$item->tanggal_lahir`, `$item->jenis_kelamin`, `$item->status_perkawinan`, `$item->agama`, `$item->no_telepon`,`$item->alamat`, `$item->pendidikan_terakhir`, `$item->pengalaman_kerja`, `$item->pas_foto`, `$item->foto_ktp`]" ?>
                                         <div class="btn-group btn-group-sm" role="group">
@@ -76,7 +80,7 @@
                                             <?php if ($item->status == 'divalidasi'): ?>
                                                 <?php if ($item->kartu_ak1): ?>
                                                     <a href="<?= base_url("file/$item->kartu_ak1"); ?>" download class="pt-1 pb-0 px-2 btn btn-secondary">
-                                                        <i class="bi bi-download"></i> Download AK1
+                                                        <i class="bi bi-download"></i>
                                                     </a>
                                                 <?php else: ?>
                                                     <button type="button" class="pt-1 pb-0 px-2 btn btn-success" data-bs-toggle="modal" data-bs-target="#modal_upload" onclick="setUpload('<?= $item->id_pendaftaran ?>')">

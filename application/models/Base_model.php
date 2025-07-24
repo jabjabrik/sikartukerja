@@ -5,7 +5,7 @@ class Base_model extends CI_Model
     public function get_all(string $table_name, bool $is_active = false): array
     {
         $where = $is_active ? "AND $table_name.is_active = '1'" : "";
-        $query = "SELECT * FROM $table_name WHERE 1=1 $where";
+        $query = "SELECT * FROM $table_name WHERE 1=1 $where ORDER BY id_$table_name DESC";
         $result = $this->db->query($query);
         return $result->result();
     }

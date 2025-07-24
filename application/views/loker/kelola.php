@@ -30,13 +30,15 @@
             </div>
             <div class="app-content">
                 <div class="container-fluid">
-                    <table id="datatables" class="table table-striped table-bordered text-capitalize" style="white-space: nowrap; font-size: 1em;">
+                    <table id="datatables" class="table table-striped table-bordered text-capitalize" style=" font-size: 1em;">
                         <thead>
                             <tr>
                                 <th>No</th>
                                 <th>Kriteria</th>
+                                <th>Instansi</th>
                                 <th>Lulusan</th>
                                 <th>Keterangan</th>
+                                <th>Berlaku</th>
                                 <th>foto</th>
                                 <th>Aksi</th>
                             </tr>
@@ -47,19 +49,21 @@
                                 <tr>
                                     <td><?= $no++ ?></td>
                                     <td><?= $item->kriteria ?></td>
+                                    <td><?= $item->nama_instansi ?></td>
                                     <td><?= $item->lulusan ?></td>
                                     <td style="white-space: wrap"><?= $item->keterangan, 0, 60; ?></td>
+                                    <td><?= date('d/m/Y', strtotime($item->tanggal_berlaku)) ?></td>
                                     <td>
                                         <img width="120" src="<?= base_url("file/$item->foto"); ?>" alt="">
                                     </td>
-                                    <td>
-                                        <?php $params = "[`$item->id_lowongan_kerja`, `$item->kriteria`, `$item->lulusan`, `$item->keterangan`]" ?>
+                                    <td style="white-space: nowrap;">
+                                        <?php $params = "[`$item->id_lowongan_kerja`,`$item->kriteria`,`$item->nama_instansi`, `$item->lulusan`, `$item->keterangan`,`$item->tanggal_berlaku`]" ?>
                                         <div class="btn-group btn-group-sm" role="group">
                                             <button type="button" class="pb-0 px-2 btn btn-outline-success me-1" data-bs-toggle="modal" data-bs-target="#modal_form" onclick="setForm('edit', <?= $params ?>)">
-                                                <i class="bi bi-pencil-square"></i> Edit
+                                                <i class="bi bi-pencil-square"></i>
                                             </button>
                                             <a href="<?= base_url("loker/delete/$item->id_lowongan_kerja"); ?>" class="pb-0 px-2 btn btn-outline-danger" onclick="return confirm('Anda yakin ingin menghapus data?')">
-                                                <i class="bi bi-trash"></i> Hapus
+                                                <i class="bi bi-trash"></i>
                                             </a>
                                         </div>
                                     </td>
@@ -94,12 +98,29 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-6 col-12">
+                                <label for="nama_instansi" class="form-label">Nama Instansi</label>
+                                <input type="text" name="nama_instansi" id="nama_instansi" class="form-control" required>
+                            </div>
+                            <div class="mb-3 col-md-6 col-12">
                                 <label for="lulusan" class="form-label">Lulusan</label>
-                                <input type="text" name="lulusan" id="lulusan" class="form-control" required>
+                                <select name="lulusan" id="lulusan" class="form-control" required>
+                                    <option value="" selected>-</option>
+                                    <option value="SD / Sederajat">SD / Sederajat</option>
+                                    <option value="SMP / Sederajat">SMP / Sederajat</option>
+                                    <option value="SMA / Sederajat">SMA / Sederajat</option>
+                                    <option value="Diploma I/II/III">Diploma I/II/III</option>
+                                    <option value="Diploma IV / Strata I">Diploma IV / Strata I</option>
+                                    <option value="Strata II">Strata II</option>
+                                    <option value="Strata III">Strata III</option>
+                                </select>
                             </div>
                             <div class="form-group col-md-6 col-12">
                                 <label for="keterangan" class="form-label">Keterangan</label>
                                 <input type="text" name="keterangan" id="keterangan" class="form-control" required>
+                            </div>
+                            <div class="form-group col-md-6 col-12">
+                                <label for="tanggal_berlaku" class="form-label">Tanggal Berlaku</label>
+                                <input type="date" name="tanggal_berlaku" id="tanggal_berlaku" class="form-control" required>
                             </div>
                             <div class="form-group col-md-6 col-12">
                                 <label for="foto" class="form-label">Foto</label>
@@ -122,7 +143,7 @@
         const modal_form = document.querySelector('#modal_form');
         const setForm = (title, data) => {
             modal_form.querySelector('form').setAttribute('action', `<?= base_url('loker/') ?>${title}`)
-            const fields = ['id_lowongan_kerja', 'kriteria', 'lulusan', 'keterangan'];
+            const fields = ['id_lowongan_kerja', 'kriteria', 'nama_instansi', 'lulusan', 'keterangan', 'tanggal_berlaku'];
             fields.forEach((e, i) => {
                 const element = modal_form.querySelector(`#${e}`);
                 element.value = title == 'insert' ? '' : data[i];

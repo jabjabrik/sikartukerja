@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 21 Jul 2025 pada 18.03
+-- Waktu pembuatan: 24 Jul 2025 pada 08.28
 -- Versi server: 10.4.22-MariaDB
 -- Versi PHP: 7.3.33
 
@@ -30,8 +30,10 @@ SET time_zone = "+00:00";
 CREATE TABLE `lowongan_kerja` (
   `id_lowongan_kerja` bigint(20) UNSIGNED NOT NULL,
   `kriteria` enum('Laki-laki','Perempuan','Laki-laki / Perempuan') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nama_instansi` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `lulusan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `keterangan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tanggal_berlaku` date NOT NULL,
   `foto` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -39,12 +41,12 @@ CREATE TABLE `lowongan_kerja` (
 -- Dumping data untuk tabel `lowongan_kerja`
 --
 
-INSERT INTO `lowongan_kerja` (`id_lowongan_kerja`, `kriteria`, `lulusan`, `keterangan`, `foto`) VALUES
-(1, 'Laki-laki / Perempuan', 'SMA/SMK', 'Posisi ini berbasis kontrak selama 6 bulan dengan kemungkinan perpanjangan berdasarkan performa kerja. Kami mencari individu yang memiliki keterampilan komunikasi yang baik, bersedia bekerja dalam tekanan', 'loker1.jpg'),
-(2, 'Perempuan', 'D3 Perhotelan', 'Kami menerima fresh graduate untuk posisi ini, asalkan memiliki semangat belajar yang tinggi dan siap menjalani pelatihan intensif selama 3 bulan', 'loker2.jpg'),
-(3, 'Laki-laki', 'SMA/SMK', 'Posisi ini mengharuskan kandidat untuk bekerja di kantor utama dengan jam kerja fleksibel. Kandidat diharapkan memiliki pengalaman dalam manajemen proyek, kemampuan multitasking', 'loker3.jpg'),
-(4, 'Laki-laki / Perempuan', 'S1 Pendidikan', 'Kami mencari individu dengan kemampuan komunikasi yang baik, dapat bekerja dalam tim, dan memiliki etos kerja yang tinggi. Kandidat diharapkan memiliki pemahaman dasar tentang industri', 'loker4.jpg'),
-(5, 'Perempuan', 'S1 Komunikasi', 'Lowongan ini membutuhkan kandidat yang memiliki SIM A aktif dan bersedia melakukan perjalanan dinas ke berbagai lokasi ses', 'loker5.jpg');
+INSERT INTO `lowongan_kerja` (`id_lowongan_kerja`, `kriteria`, `nama_instansi`, `lulusan`, `keterangan`, `tanggal_berlaku`, `foto`) VALUES
+(1, 'Laki-laki / Perempuan', 'PT. Cakrawala Teknologi Nusantara', 'SMA / Sederajat', 'Posisi ini berbasis kontrak selama 6 bulan dengan kemungkinan perpanjangan berdasarkan performa kerja. Kami mencari individu yang memiliki keterampilan komunikasi yang baik, bersedia bekerja dalam tekanan', '2025-08-24', 'loker1.jpg'),
+(2, 'Perempuan', 'CV. Bumi Hijau Sejahtera', 'SMA / Sederajat', 'Kami menerima fresh graduate untuk posisi ini, asalkan memiliki semangat belajar yang tinggi dan siap menjalani pelatihan intensif selama 3 bulan', '2025-08-24', 'loker2.jpg'),
+(3, 'Laki-laki', 'PT. Mitra Logistik Indonesia', 'SMA / Sederajat', 'Posisi ini mengharuskan kandidat untuk bekerja di kantor utama dengan jam kerja fleksibel. Kandidat diharapkan memiliki pengalaman dalam manajemen proyek, kemampuan multitasking', '2025-09-24', 'loker3.jpg'),
+(4, 'Laki-laki / Perempuan', 'CV. Solusi Media Kreatif', 'SMA / Sederajat', 'Kami mencari individu dengan kemampuan komunikasi yang baik, dapat bekerja dalam tim, dan memiliki etos kerja yang tinggi. Kandidat diharapkan memiliki pemahaman dasar tentang industri', '2025-09-24', 'loker4.jpg'),
+(5, 'Perempuan', 'PT. Energi Mandiri Terbarukan', 'SMA / Sederajat', 'Lowongan ini membutuhkan kandidat yang memiliki SIM A aktif dan bersedia melakukan perjalanan dinas ke berbagai lokasi ses', '2025-07-17', 'loker5.jpg');
 
 -- --------------------------------------------------------
 
@@ -66,8 +68,8 @@ CREATE TABLE `monitoring` (
 --
 
 INSERT INTO `monitoring` (`id_monitoring`, `id_user`, `nopencaker`, `tanggal`, `status_bekerja`, `tempat_bekerja`) VALUES
-(1, 2, 'AK1-2023-0001', '2025-07-16', 'bekerja', 'PT Maju Jaya Abadi'),
-(2, 3, 'AK1-2023-0002', '2025-07-19', 'belum bekerja', NULL);
+(1, 2, 'AK1-2023-0001', '2025-07-19', 'bekerja', 'PT Maju Jaya Abadi'),
+(2, 3, 'AK1-2023-0002', '2025-07-22', 'belum bekerja', NULL);
 
 -- --------------------------------------------------------
 
@@ -78,6 +80,7 @@ INSERT INTO `monitoring` (`id_monitoring`, `id_user`, `nopencaker`, `tanggal`, `
 CREATE TABLE `pendaftaran` (
   `id_pendaftaran` bigint(20) UNSIGNED NOT NULL,
   `id_user` bigint(20) UNSIGNED NOT NULL,
+  `tanggal_pendaftaran` date NOT NULL DEFAULT curdate(),
   `nik` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `nama` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tempat_lahir` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -92,6 +95,7 @@ CREATE TABLE `pendaftaran` (
   `pas_foto` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `foto_ktp` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` enum('proses','divalidasi','ditolak') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'proses',
+  `tanggal_upload` date DEFAULT NULL,
   `kartu_ak1` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -99,10 +103,10 @@ CREATE TABLE `pendaftaran` (
 -- Dumping data untuk tabel `pendaftaran`
 --
 
-INSERT INTO `pendaftaran` (`id_pendaftaran`, `id_user`, `nik`, `nama`, `tempat_lahir`, `tanggal_lahir`, `jenis_kelamin`, `status_perkawinan`, `agama`, `alamat`, `no_telepon`, `pendidikan_terakhir`, `pengalaman_kerja`, `pas_foto`, `foto_ktp`, `status`, `kartu_ak1`) VALUES
-(1, 2, '3510010101010001', 'Jaka Nugraha', 'Probolinggo', '2003-05-15', 'Laki-laki', 'belum kawin', 'islam', 'Jl Lumajang GG. Mangga RT/RW 001/010 Kel Kedungasem Kec Wonoasih', '081234567890', 'SMA / Sederajat', '-', 'pas_foto.jpg', 'foto_ktp.jpg', 'divalidasi', 'kartu_ak1_1.jpg'),
-(2, 3, '3510020202020002', 'Ilham Romadoni', 'Probolinggo', '2001-10-20', 'Laki-laki', 'belum kawin', 'islam', 'Jln Selamet Riadi RT/RW 005/005 Kel Kanigaran Kec Kanigaran', '082345678901', 'Diploma IV / Strata I', '2 tahun sebagai Auditor', 'pas_foto.jpg', 'foto_ktp.jpg', 'divalidasi', 'kartu_ak1_1.jpg'),
-(3, 4, '3510030303030003', 'Budi Santoso', 'Bandung', '1999-03-10', 'Laki-laki', 'cerai hidup', 'katolik', 'Jl Lumajang GG. Jeruk RT/RW 002/010 Kel Kedungasem Kec Wonoasih', '083456789012', 'SMA / Sederajat', '2 tahun sebagai Driver', 'pas_foto.jpg', 'foto_ktp.jpg', 'proses', NULL);
+INSERT INTO `pendaftaran` (`id_pendaftaran`, `id_user`, `tanggal_pendaftaran`, `nik`, `nama`, `tempat_lahir`, `tanggal_lahir`, `jenis_kelamin`, `status_perkawinan`, `agama`, `alamat`, `no_telepon`, `pendidikan_terakhir`, `pengalaman_kerja`, `pas_foto`, `foto_ktp`, `status`, `tanggal_upload`, `kartu_ak1`) VALUES
+(1, 2, '2025-07-19', '3510010101010001', 'Jaka Nugraha', 'Probolinggo', '2003-05-15', 'Laki-laki', 'belum kawin', 'islam', 'Jl Lumajang GG. Mangga RT/RW 001/010 Kel Kedungasem Kec Wonoasih', '081234567890', 'SMA / Sederajat', '-', 'pas_foto.jpg', 'foto_ktp.jpg', 'divalidasi', '2025-07-21', 'kartu_ak1_1.jpg'),
+(2, 3, '2025-07-20', '3510020202020002', 'Ilham Romadoni', 'Probolinggo', '2001-10-20', 'Laki-laki', 'belum kawin', 'islam', 'Jln Selamet Riadi RT/RW 005/005 Kel Kanigaran Kec Kanigaran', '082345678901', 'Diploma IV / Strata I', '2 tahun sebagai Auditor', 'pas_foto.jpg', 'foto_ktp.jpg', 'divalidasi', '2025-07-22', 'kartu_ak1_1.jpg'),
+(3, 4, '2025-07-21', '3510030303030003', 'Budi Santoso', 'Bandung', '1999-03-10', 'Laki-laki', 'cerai hidup', 'katolik', 'Jl Lumajang GG. Jeruk RT/RW 002/010 Kel Kedungasem Kec Wonoasih', '083456789012', 'SMA / Sederajat', '2 tahun sebagai Driver', 'pas_foto.jpg', 'foto_ktp.jpg', 'proses', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -151,6 +155,7 @@ ALTER TABLE `monitoring`
 --
 ALTER TABLE `pendaftaran`
   ADD PRIMARY KEY (`id_pendaftaran`),
+  ADD UNIQUE KEY `pendaftaran_nik_unique` (`nik`),
   ADD KEY `pendaftaran_id_user_foreign` (`id_user`);
 
 --

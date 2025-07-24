@@ -30,9 +30,17 @@ class Pendaftaran extends CI_Controller
 
     public function insert()
     {
+        $nik = trim($this->input->post('nik', true));
+
+        $is_exist_nik = (bool)$this->base_model->get_one_data_by('pendaftaran', 'nik', $nik);
+        if ($is_exist_nik) {
+            $this->session->set_flashdata('alert', "NIK telah terdaftar");
+            redirect('pendaftaran/index');
+        }
+
         $data = [
             'id_user' => trim($this->input->post('id_user', true)),
-            'nik' => trim($this->input->post('nik', true)),
+            'nik' => $nik,
             'nama' => trim($this->input->post('nama', true)),
             'tempat_lahir' => trim($this->input->post('tempat_lahir', true)),
             'tanggal_lahir' => trim($this->input->post('tanggal_lahir', true)),
@@ -56,9 +64,17 @@ class Pendaftaran extends CI_Controller
     public function update()
     {
         $id_pendaftaran = trim($this->input->post('id_pendaftaran', true));
+        $nik = trim($this->input->post('nik', true));
+
+        $is_exist_nik = (bool)$this->base_model->get_one_data_by('pendaftaran', 'nik', $nik);
+        $is_current_nik = $this->base_model->get_one_data_by('pendaftaran', 'id_pendaftaran', $id_pendaftaran)->nik == $nik;
+        if ($is_exist_nik && !$is_current_nik) {
+            $this->session->set_flashdata('alert', "NIK telah terdaftar");
+            redirect('pendaftaran/index');
+        }
 
         $data = [
-            'nik' => trim($this->input->post('nik', true)),
+            'nik' => $nik,
             'nama' => trim($this->input->post('nama', true)),
             'tempat_lahir' => trim($this->input->post('tempat_lahir', true)),
             'tanggal_lahir' => trim($this->input->post('tanggal_lahir', true)),
@@ -98,10 +114,6 @@ class Pendaftaran extends CI_Controller
             'status' => $status_validasi,
         ];
 
-        // if ($status_validasi == 'ditolak') {
-        //     $data['keterangan'] = $this->input->post('keterangan');
-        // }
-
         $this->base_model->update('pendaftaran', $data, $id_pendaftaran);
         redirect('pendaftaran/admin');
     }
@@ -112,6 +124,7 @@ class Pendaftaran extends CI_Controller
 
         $this->load->library('upload');
         $data['kartu_ak1'] = upload_file('kartu_ak1');
+        $data['tanggal_upload'] = date('Y-m-d');
 
         $this->base_model->update('pendaftaran', $data, $id_pendaftaran);
         redirect('pendaftaran/admin');

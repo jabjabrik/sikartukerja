@@ -26,9 +26,15 @@
                                     <i class="bi bi-plus-lg"></i> Tambah
                                 </button>
                             <?php else: ?>
-                                <a target="_blank" href="<?= base_url('monitoring/report'); ?>" class="pb-1 px-2 btn btn-sm btn-success mt-2">
-                                    <i class=" bi bi-flag"></i> Cetak Laporan
-                                </a>
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Cetak Laporan
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a target="_blank" class="dropdown-item" href="monitoring/report/bekerja">Bekerja</a></li>
+                                        <li><a target="_blank" class="dropdown-item" href="monitoring/report/belum bekerja">Belum Bekerja</a></li>
+                                    </ul>
+                                </div>
                             <?php endif; ?>
                         </div>
                     </div>

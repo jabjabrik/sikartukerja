@@ -9,11 +9,25 @@
         body {
             font-size: .8em;
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header-image {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header-image img {
+            max-width: 100%;
+            height: auto;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
+            margin-top: 10px;
         }
 
         table th {
@@ -39,12 +53,17 @@
             text-align: center;
             text-transform: capitalize;
             color: #333;
+            margin-top: 10px;
         }
     </style>
 </head>
 
 <body>
-    <h2>Laporan Monitoring</h2>
+    <div class="header-image">
+        <img style="width: 100%;" src="data:image/png;base64,<?= base64_encode(file_get_contents(FCPATH . 'assets/img/kop.png')) ?>" alt="Logo">
+    </div>
+
+    <h2>Laporan Monitoring Pekerjaan</h2>
 
     <table>
         <thead>

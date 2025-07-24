@@ -29,9 +29,10 @@
                 <div class="container-fluid">
                     <div class="row g-5">
                         <?php foreach ($data_result as $item): ?>
+                            <?php if ($item->tanggal_berlaku < date('Y-m-d')) continue; ?>
                             <div class="col-4">
                                 <div class="card">
-                                    <img src=" <?= base_url("file/$item->foto"); ?>" class="card-img-top" alt="foto">
+                                    <img src="<?= base_url("file/$item->foto"); ?>" class="card-img-top" alt="foto">
                                     <div class="card-body">
                                         <h4 class="card-title fw-bold">Kriteria : <?= $item->kriteria ?></h4>
                                         <br>
