@@ -61,7 +61,9 @@ class Monitoring extends CI_Controller
 
     public function report($status)
     {
-        $data['data_result'] = $this->monitoring_model->get_all(null, null, urldecode($status));
+        $status = urldecode($status);
+        $data['data_result'] = $this->monitoring_model->get_all(null, null, $status);
+        $data['status'] = $status;
         $html = $this->load->view('monitoring/report', $data, true);
 
         // Atur DOMPDF

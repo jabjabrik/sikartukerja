@@ -39,6 +39,7 @@
                                 <th>Lulusan</th>
                                 <th>Keterangan</th>
                                 <th>Berlaku</th>
+                                <th>Tgl.Upload</th>
                                 <th>foto</th>
                                 <th>Aksi</th>
                             </tr>
@@ -53,6 +54,7 @@
                                     <td><?= $item->lulusan ?></td>
                                     <td style="white-space: wrap"><?= $item->keterangan, 0, 60; ?></td>
                                     <td><?= date('d/m/Y', strtotime($item->tanggal_berlaku)) ?></td>
+                                    <td><?= date('d/m/Y', strtotime($item->tanggal_upload)) ?></td>
                                     <td>
                                         <img width="120" src="<?= base_url("file/$item->foto"); ?>" alt="">
                                     </td>

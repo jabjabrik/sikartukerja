@@ -63,7 +63,7 @@
         <img style="width: 100%;" src="data:image/png;base64,<?= base64_encode(file_get_contents(FCPATH . 'assets/img/kop.png')) ?>" alt="Logo">
     </div>
 
-    <h2>Laporan Monitoring Pekerjaan</h2>
+    <h2>Laporan Pemohon <?= $status ?></h2>
 
     <table>
         <thead>
