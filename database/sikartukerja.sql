@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 24 Jul 2025 pada 08.28
+-- Waktu pembuatan: 24 Jul 2025 pada 10.34
 -- Versi server: 10.4.22-MariaDB
 -- Versi PHP: 7.3.33
 
@@ -34,19 +34,39 @@ CREATE TABLE `lowongan_kerja` (
   `lulusan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `keterangan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tanggal_berlaku` date NOT NULL,
-  `foto` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `foto` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tanggal_upload` date NOT NULL DEFAULT curdate()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data untuk tabel `lowongan_kerja`
 --
 
-INSERT INTO `lowongan_kerja` (`id_lowongan_kerja`, `kriteria`, `nama_instansi`, `lulusan`, `keterangan`, `tanggal_berlaku`, `foto`) VALUES
-(1, 'Laki-laki / Perempuan', 'PT. Cakrawala Teknologi Nusantara', 'SMA / Sederajat', 'Posisi ini berbasis kontrak selama 6 bulan dengan kemungkinan perpanjangan berdasarkan performa kerja. Kami mencari individu yang memiliki keterampilan komunikasi yang baik, bersedia bekerja dalam tekanan', '2025-08-24', 'loker1.jpg'),
-(2, 'Perempuan', 'CV. Bumi Hijau Sejahtera', 'SMA / Sederajat', 'Kami menerima fresh graduate untuk posisi ini, asalkan memiliki semangat belajar yang tinggi dan siap menjalani pelatihan intensif selama 3 bulan', '2025-08-24', 'loker2.jpg'),
-(3, 'Laki-laki', 'PT. Mitra Logistik Indonesia', 'SMA / Sederajat', 'Posisi ini mengharuskan kandidat untuk bekerja di kantor utama dengan jam kerja fleksibel. Kandidat diharapkan memiliki pengalaman dalam manajemen proyek, kemampuan multitasking', '2025-09-24', 'loker3.jpg'),
-(4, 'Laki-laki / Perempuan', 'CV. Solusi Media Kreatif', 'SMA / Sederajat', 'Kami mencari individu dengan kemampuan komunikasi yang baik, dapat bekerja dalam tim, dan memiliki etos kerja yang tinggi. Kandidat diharapkan memiliki pemahaman dasar tentang industri', '2025-09-24', 'loker4.jpg'),
-(5, 'Perempuan', 'PT. Energi Mandiri Terbarukan', 'SMA / Sederajat', 'Lowongan ini membutuhkan kandidat yang memiliki SIM A aktif dan bersedia melakukan perjalanan dinas ke berbagai lokasi ses', '2025-07-17', 'loker5.jpg');
+INSERT INTO `lowongan_kerja` (`id_lowongan_kerja`, `kriteria`, `nama_instansi`, `lulusan`, `keterangan`, `tanggal_berlaku`, `foto`, `tanggal_upload`) VALUES
+(1, 'Laki-laki / Perempuan', 'PT. Cakrawala Teknologi Nusantara', 'SMA / Sederajat', 'Posisi ini berbasis kontrak selama 6 bulan dengan kemungkinan perpanjangan berdasarkan performa kerja. Kami mencari individu yang memiliki keterampilan komunikasi yang baik, bersedia bekerja dalam tekanan', '2025-08-24', 'loker1.jpg', '2025-07-24'),
+(2, 'Perempuan', 'CV. Bumi Hijau Sejahtera', 'SMA / Sederajat', 'Kami menerima fresh graduate untuk posisi ini, asalkan memiliki semangat belajar yang tinggi dan siap menjalani pelatihan intensif selama 3 bulan', '2025-08-24', 'loker2.jpg', '2025-07-24'),
+(3, 'Laki-laki', 'PT. Mitra Logistik Indonesia', 'SMA / Sederajat', 'Posisi ini mengharuskan kandidat untuk bekerja di kantor utama dengan jam kerja fleksibel. Kandidat diharapkan memiliki pengalaman dalam manajemen proyek, kemampuan multitasking', '2025-09-24', 'loker3.jpg', '2025-07-24'),
+(4, 'Laki-laki / Perempuan', 'CV. Solusi Media Kreatif', 'SMA / Sederajat', 'Kami mencari individu dengan kemampuan komunikasi yang baik, dapat bekerja dalam tim, dan memiliki etos kerja yang tinggi. Kandidat diharapkan memiliki pemahaman dasar tentang industri', '2025-09-24', 'loker4.jpg', '2025-07-24'),
+(5, 'Perempuan', 'PT. Energi Mandiri Terbarukan', 'SMA / Sederajat', 'Lowongan ini membutuhkan kandidat yang memiliki SIM A aktif dan bersedia melakukan perjalanan dinas ke berbagai lokasi ses', '2025-07-17', 'loker5.jpg', '2025-07-24');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `migrations`
+--
+
+CREATE TABLE `migrations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `migrations`
+--
+
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(1, 'sikartukerja', 1);
 
 -- --------------------------------------------------------
 
@@ -144,6 +164,12 @@ ALTER TABLE `lowongan_kerja`
   ADD PRIMARY KEY (`id_lowongan_kerja`);
 
 --
+-- Indeks untuk tabel `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `monitoring`
 --
 ALTER TABLE `monitoring`
@@ -174,6 +200,12 @@ ALTER TABLE `user`
 --
 ALTER TABLE `lowongan_kerja`
   MODIFY `id_lowongan_kerja` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT untuk tabel `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `monitoring`
